@@ -1,0 +1,103 @@
+@font-face {
+  font-family: "Cabinet Grotesk Bold";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../../vendor/fonts/CabinetGrotesk-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Cabinet Grotesk Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../../vendor/fonts/CabinetGrotesk-Medium.woff2") format("woff2");
+}
+
+.sidebar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 19px;
+}
+
+.sidebar__date-time {
+  visibility: hidden;
+  position: absolute;
+}
+
+.sidebar__avatar {
+  height: 56px;
+  width: 56px;
+}
+
+.sidebar__username {
+  font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 1.24;
+}
+
+.sidebar__change-profile-info {
+  visibility: hidden;
+  position: absolute;
+}
+
+.sidebar__log-out {
+  visibility: hidden;
+  position: absolute;
+}
+
+@media screen and (max-width: 750px) {
+  .sidebar {
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    padding: 20px 0 20px 76px;
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .sidebar__date-time {
+    visibility: visible;
+    align-self: flex-start;
+    top: -51px;
+    margin-left: 25px;
+    font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .sidebar__avatar {
+    position: absolute;
+    top: 20px;
+    left: 0;
+  }
+
+  .sidebar__username {
+    margin-bottom: 4px;
+    font-size: 24px;
+  }
+
+  .sidebar__change-profile-info,
+  .sidebar__log-out {
+    visibility: visible;
+    font-family: "Cabinet Grotesk Medium", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 1.24;
+    color: rgba(0, 0, 0, 0.6);
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.5s linear;
+    position: relative;
+  }
+
+  .sidebar__change-profile-info:hover,
+  .sidebar__log-out:hover {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}

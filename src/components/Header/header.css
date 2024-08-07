@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 32px 0 28px;
+  font-family: "Cabinet Grotesk Bold";
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  background-color: #f3f3f3;
+  justify-content: space-between;
+}
+
+.header__logo {
+  margin-right: 24px;
+}
+
+.header__add-btn {
+  margin-left: auto;
+  margin-right: 20px;
+  font-weight: 700;
+  border: none;
+  background: none;
+  color: #000;
+}
+
+.header__toggle-switch-container {
+  display: flex;
+  margin-left: 350px;
+  align-items: center;
+}
+
+.header__date-and-location {
+  margin: 0;
+  color: #000;
+}
+
+.header__user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__user-name {
+  margin: 0;
+  color: #000;
+}
+
+.header__link {
+  text-decoration: none;
+  color: #000;
+}

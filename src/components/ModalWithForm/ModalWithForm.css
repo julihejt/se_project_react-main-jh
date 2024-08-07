@@ -1,0 +1,117 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__content {
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+  max-width: 496px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.modal__title {
+  margin: 0;
+  font-size: 16px;
+  padding-bottom: 20px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  padding: 0;
+  height: 20px;
+  width: 20px;
+  border: none;
+  background-image: url("../../assets/close_button-gray.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  font-family: "CabinetGrotesk-Bold";
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.modal__label {
+  margin-bottom: 24px;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+  border-radius: 1px;
+  border-top: #fff;
+  border-right: #fff;
+  border-left: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0);
+  padding: 0;
+  padding-top: 8px;
+}
+
+.modal__radio-buttons {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  align-items: flex-start;
+  margin: 0;
+  color: #000;
+  accent-color: #000;
+}
+
+.modal__legend {
+  padding-bottom: 12px;
+}
+
+.modal__radio-input {
+  margin-right: 5px;
+}
+
+.modal__label_type_radio {
+  padding-bottom: 8px;
+}
+
+.modal__label_type_radio:last-of-type {
+  padding-bottom: 0px;
+}
+
+.modal__submit {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 1);
+  background-color: #000;
+  border: none;
+  border-radius: 4px;
+  margin-top: 32px;
+  width: 124px;
+  height: 36px;
+  cursor: pointer;
+}
+.modal__submit_disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.modal__submit:hover {
+  background-color: #00000099;
+}
