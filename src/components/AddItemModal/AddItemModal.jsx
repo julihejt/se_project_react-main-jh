@@ -19,9 +19,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
     <ModalWithForm
       title="new garment"
       buttonText="Add garment"
-      isOpen={isOpen}
-      onClose={handleCloseModal}
-      onSubmit={handleSubmit}
+      activeModal={isOpen} // updated to match expected prop name in ModalWithForm
+      closeActiveModal={handleCloseModal} // This prop name should match the expectation in ModalWithForm
+      onSubmit={handleSubmit} // Pass handleSubmit to be used in the form submission
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
