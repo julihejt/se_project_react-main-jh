@@ -1,4 +1,4 @@
-.footer {
+.modal__footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

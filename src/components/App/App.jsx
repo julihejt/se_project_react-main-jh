@@ -12,7 +12,7 @@ import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem, addItem } from "../../utils/Api";
-import DeleteConfirmModal from "../DeleteConfirmModak/DeleteConfirmModak";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 function App() {
   // State for storing weather data
   const [weatherData, setWeatherData] = useState({
@@ -126,13 +126,7 @@ function App() {
         </CurrentTemperatureUnitContext.Provider>
       </div>
       {/* Conditional rendering for AddItemModal */}
-      {activeModal === "add-garment" && (
-        <AddItemModal
-          handleCloseModal={closeActiveModal}
-          isOpen={activeModal === "add-garment"}
-          onAddItem={onAddItem}
-        />
-      )}
+
       {/* Modal with form for adding a new garment */}
       <ModalWithForm
         title="New garment"
@@ -195,7 +189,7 @@ function App() {
         activeModal={activeModal}
         card={selectedCard}
         closeActiveModal={closeActiveModal}
-        handleDeleteItem={handleDeleteItem}
+        handleDeleteClick={handleDeleteItem}
       />
       {activeModal === "delete-garment" && (
         <DeleteConfirmModal

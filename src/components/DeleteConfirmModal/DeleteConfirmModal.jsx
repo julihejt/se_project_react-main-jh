@@ -1,4 +1,4 @@
-import "../DeleteConfirmModak/DeleteConfirmModak.css";
+import "../DeleteConfirmModal/DeleteConfirmModal.css";
 function DeleteConfirmModal({ activeModal, handleCloseClick, onDelete }) {
   return (
     <div

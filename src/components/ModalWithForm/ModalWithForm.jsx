@@ -9,6 +9,7 @@ function ModalWithForm({
   activeModal,
   onSubmit, // expecting to receive the handleSubmit function
 }) {
+  console.log(title);
   return (
     // Main container for the modal, conditionally adding the 'modal_opened' class
     <div className={`modal ${activeModal && "modal_opened"}`}>
@@ -20,7 +21,13 @@ function ModalWithForm({
         <button onClick={closeActiveModal} className="modal__close" />
 
         {/* Form inside the modal */}
-        <form className="modal__form" onSubmit={onSubmit}>
+        <form
+          className="modal__form"
+          onSubmit={(e) => {
+            debugger;
+            onSubmit(e);
+          }}
+        >
           {" "}
           {/* Using the passed onSubmit function */}
           {children}

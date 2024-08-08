@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001/";
+const baseUrl = "http://localhost:3001"; // Fixed baseUrl without trailing slash
 const headers = {
   "Content-Type": "application/json",
 };
@@ -17,13 +17,13 @@ function getItems() {
 function addItem({ name, weather, imageUrl }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: headers,
     body: JSON.stringify({ name, weather, imageUrl }),
   }).then(processResponse);
 }
 
-function deleteItem(item) {
-  return fetch(`${baseUrl}/items/${item._id}`, {
+function deleteItem(id) {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: headers,
   }).then(processResponse);
