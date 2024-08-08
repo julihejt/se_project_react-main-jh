@@ -9,7 +9,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   };
 
   const handleSubmit = (e) => {
-    debugger;
     e.preventDefault();
     onAddItem(values, () => {
       setValues({ name: "", imageUrl: "", weather: "" });

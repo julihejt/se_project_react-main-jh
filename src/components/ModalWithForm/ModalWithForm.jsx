@@ -24,7 +24,6 @@ function ModalWithForm({
         <form
           className="modal__form"
           onSubmit={(e) => {
-            debugger;
             onSubmit(e);
           }}
         >
