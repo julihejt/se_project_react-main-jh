@@ -3,8 +3,17 @@ import logo from "../../assets/Logo.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 
-function Header({ handleCardClick, weatherData }) {
+function Header({
+  handleCardClick,
+  weatherData,
+  handleLoginModal,
+  handleRegisterModal,
+  isLoggedIn,
+}) {
+
+  const {name, avatar} = useContext(CurrentUserContext)
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -28,17 +37,36 @@ function Header({ handleCardClick, weatherData }) {
       >
         + Add clothes
       </button>
-      <Link to="/profile" className="header__link">
-        <div className="header__user-container">
-          <p className="header__user-name">Terrance Tegegne</p>
-          <img
-            src={avatar}
-            alt="Terrance Tegegne"
-            className="header__user-avatar"
-          />
-        </div>
-      </Link>
-    </header>
+
+      {isLoggedIn ? (
+          <Link to="/profile">
+            <div className="header__user-container">
+              <p className="header__username">{name}</p>
+
+              <img src={avatar} alt={name} className="header__avatar" />
+            </div>
+          </Link>
+        ) : (
+          <>
+            <button
+              onClick={handle}
+              type="button"
+              className="header_signup-button"
+            >
+              Sign up
+            </button>
+            <button
+              onClick={handleLoginModal}
+              type="button"
+              className="header_login-button"
+            >
+              Log In
+            </button>
+          </>
+        )}
+      </div>
+      
+  </Header> 
   );
 }
 

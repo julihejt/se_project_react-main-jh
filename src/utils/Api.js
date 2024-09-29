@@ -3,11 +3,12 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-const processResponse = (res) => {
-  if (res.ok) {
-    return res.json();
+const processResponse = (response) => {
+  if (response.ok) {
+    return response.json();
+  } else {
+    return Promise.reject(`Error: ${response.status} - ${response.statusText}`);
   }
-  return Promise.reject(`Error: ${res.status}`);
 };
 
 function getItems() {
@@ -22,11 +23,16 @@ function addItem({ name, weather, imageUrl }) {
   }).then(processResponse);
 }
 
-function deleteItem(id) {
+const deleteItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: headers,
-  }).then(processResponse);
-}
+  })
+    .then(processResponse) // Use processResponse to handle the response
+    .catch((error) => {
+      console.error("Network or server error:", error);
+      throw error;
+    });
+};
 
 export { getItems, addItem, deleteItem, processResponse };

@@ -1,13 +1,13 @@
+import { processResponse } from "./Api";
 export const getWeather = ({ latitude, longitude }, APIKey) => {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIKey}`
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+  )
+    .then(processResponse) // Use the processResponse utility function
+    .catch((error) => {
+      console.error("Failed to fetch weather data:", error);
+      throw error; // Optionally rethrow the error for further handling
+    });
 };
 
 export const filterWeatherData = (data) => {

@@ -5,7 +5,7 @@ function ItemCard({ item, onCardClick }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
-
+  console.log(item);
   return (
     <li className="card-container">
       {/* Display the item name */}
@@ -14,7 +14,7 @@ function ItemCard({ item, onCardClick }) {
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={item.link}
+        src={item.imageUrl}
         alt={item.name}
       />
     </li>

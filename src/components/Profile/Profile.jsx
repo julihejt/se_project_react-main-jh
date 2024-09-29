@@ -3,7 +3,14 @@ import SideBar from "../Profile/SideBar/SideBar";
 import ClothesSection from "../Profile/ClothesSection/ClothesSection";
 
 // Defining the Profile component which takes props: onCardClick, clothingItems, handleAddClick, and weatherData
-function Profile({ onCardClick, clothingItems, handleAddClick, weatherData }) {
+function Profile({
+  onCardClick,
+  clothingItems,
+  handleAddClick,
+  weatherData,
+  selectedCard,
+  onCardLike = { onCardLike },
+}) {
   return (
     // Main container for the profile component
     <div className="profile">
@@ -18,6 +25,8 @@ function Profile({ onCardClick, clothingItems, handleAddClick, weatherData }) {
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
+          selectedCard={selectedCard}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

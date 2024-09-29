@@ -1,8 +1,22 @@
 import "./ClothesSection.css";
 import ItemCard from "../../ItemCard/ItemCard";
-import React from "react";
-import { defaultClothingItems } from "../../../utils/constants";
-function ClothesSection({ onCardClick, handleAddClick, clothingItems }) {
+import React, { useContext } from "react";
+//import { defaultClothingItems } from "../../../utils/constants";
+import { useContext } from "react";
+import CurrentUserContext from "../../../context/CurrentUserContext";
+function ClothesSection({
+  onCardClick,
+  handleAddClick,
+  clothingItems,
+  selectedCard = { selectedCard },
+  onCardLike = { onCardLike },
+}) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwned = selectedCard.owner === currentUser._id;
+  const clothesSectionItems = `clothes-section__items ${
+    isOwned ? "clothes-section__items_visible" : "clothes-section__items_hidden"
+  }`;
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
@@ -16,10 +30,19 @@ function ClothesSection({ onCardClick, handleAddClick, clothingItems }) {
           + Add New
         </button>
       </div>
-      <ul className="clothes-section__items">
-        {defaultClothingItems.map((item) => (
-          <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
-        ))}
+      <ul className={clothesSectionItems}>
+        {clothingItems
+          .filter((item) => {
+            return item.owner === currentUser_id;
+          })
+          .map((item) => (
+            <ItemCard
+              key={item._id}
+              item={item}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+            />
+          ))}
       </ul>
     </div>
   );

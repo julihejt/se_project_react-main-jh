@@ -9,7 +9,7 @@ function ItemModal({ activeModal, card, closeActiveModal, handleDeleteClick }) {
         {/* Close button with onClick event to trigger onClose function */}
         <button onClick={closeActiveModal} className="modal__close"></button>
         {/* Display the card image */}
-        <img src={card.link} alt={card.name} className="modal__image" />
+        <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           {/* Display the card name */}
           <h2 className="modal__caption">{card.name}</h2>
