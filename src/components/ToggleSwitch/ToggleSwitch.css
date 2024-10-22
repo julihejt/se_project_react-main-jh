@@ -1,6 +1,7 @@
 .switch {
   display: flex;
   position: relative;
+  font-family: "Cabinet Grotesk";
 }
 
 .switch__box {

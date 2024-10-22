@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const EditProfileModal = ({ activeModal, closeActiveModal, onEditProfile }) => {
+const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
@@ -20,9 +20,8 @@ const EditProfileModal = ({ activeModal, closeActiveModal, onEditProfile }) => {
     <ModalWithForm
       titleText="Change profile data"
       buttonText="Change profile data"
-      activeModal={activeModal}
       onClose={closeActiveModal}
-      isOpen={activeModal === "editprofile"}
+      isOpen={isOpen}
       name={"editprofile"}
       onSubmit={handleSubmit}
     >

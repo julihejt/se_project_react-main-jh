@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ activeModal, closeActiveModal, onSignUp }) {
+function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     console.log(e.target.value);
@@ -35,9 +35,8 @@ function RegisterModal({ activeModal, closeActiveModal, onSignUp }) {
     <ModalWithForm
       titleText="Sign Up"
       buttonText="Sign Up"
-      activeModal={activeModal}
+      isOpen={isOpen}
       onClose={closeActiveModal}
-      isOpen={activeModal === "signup"}
       name={"signup"}
       onSubmit={handleSubmit}
     >

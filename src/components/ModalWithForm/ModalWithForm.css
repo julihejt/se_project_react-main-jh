@@ -24,6 +24,10 @@
   width: 100%;
 }
 
+.modal__content_addgarment {
+  padding: 28px 28px 36px 28px;
+}
+
 .modal__title {
   margin: 0;
   font-size: 16px;
@@ -44,6 +48,10 @@
   background-size: contain;
 }
 
+.modal__close_type_grey {
+  background-image: url(../../assets/closebtn-addgarment.svg);
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -55,6 +63,22 @@
 
 .modal__label {
   margin-bottom: 24px;
+}
+
+.modal__input_type_name {
+  margin-top: 24px;
+}
+.modal__input_type_email {
+  padding-top: 24px;
+}
+.modal__input_type_image {
+  margin-top: 24px;
+}
+.modal__input_type_password {
+  padding-top: 24px;
+}
+.modal__input_type_avatarurl {
+  padding-top: 24px;
 }
 
 .modal__input {
@@ -90,6 +114,7 @@
 
 .modal__label_type_radio {
   padding-bottom: 8px;
+  accent-color: black;
 }
 
 .modal__label_type_radio:last-of-type {
@@ -109,6 +134,23 @@
   height: 36px;
   cursor: pointer;
 }
+
+.modal__delete-button {
+  cursor: pointer;
+}
+.modal__or-signup-btn {
+  border: none;
+  background: transparent;
+  color: #00000080;
+  cursor: pointer;
+}
+.modal__or-login-btn {
+  border: none;
+  background: transparent;
+  color: #00000080;
+  cursor: pointer;
+}
+
 .modal__submit_disabled {
   background-color: rgba(0, 0, 0, 0.3);
 }

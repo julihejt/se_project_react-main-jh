@@ -35,4 +35,4 @@ const deleteItem = (id) => {
     });
 };
 
-export { getItems, addItem, deleteItem, processResponse };
+export { getItems, addItem, deleteItem, processResponse, baseUrl };

@@ -1,8 +1,8 @@
-import { baseUrl, request } from "./Api";
+import { baseUrl } from "./Api";
 
 //sign up
 function signUp({ name, avatarUrl: avatar, email, password }) {
-  return request(`${baseUrl}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // Add Content-Type header
@@ -19,7 +19,7 @@ function signUp({ name, avatarUrl: avatar, email, password }) {
 //sign in
 
 function signIn({ email, password }) {
-  return request(`${baseUrl}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json", // Add Content-Type header
@@ -34,7 +34,7 @@ function signIn({ email, password }) {
 //edit profile
 
 function editProfile({ name, avatarUrl: avatar }, token) {
-  return request(`${baseUrl}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function editProfile({ name, avatarUrl: avatar }, token) {
 }
 
 function getCurrentUser(token) {
-  return request(`${baseUrl}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

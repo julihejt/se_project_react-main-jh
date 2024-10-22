@@ -10,15 +10,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import {
-  getItems,
-  deleteItem,
-  addItem,
-  likeCard,
-  unlikeCard,
-  createCard,
-  deleteCard,
-} from "../../utils/Api";
+import { getItems, deleteItem, addItem } from "../../utils/Api";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 
 import { signUp, signIn, getCurrentUser, editProfile } from "../../utils/auth";
@@ -48,6 +40,15 @@ function App() {
   // State for managing the current temperature unit
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
+  const [currentUser, setCurrentUser] = useState({
+    name: "",
+    email: "",
+    avatar: "",
+    _id: "",
+  });
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   // Function to handle card click events
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -100,7 +101,7 @@ function App() {
       });
   };
 
-  const signUp = (data) => {
+  const onSignUp = (data) => {
     signUp(data)
       .then(
         (res = {
@@ -112,7 +113,7 @@ function App() {
       .catch(console.error);
   };
 
-  const logIn = (data) => {
+  const onLogIn = (data) => {
     signIn(data)
       .then(
         (res = {
@@ -125,7 +126,7 @@ function App() {
       .catch(console.error);
   };
 
-  const EditProfileModal = (data) => {
+  const onEditProfile = (data) => {
     const token = localStorage.getItem("jwt");
     editProfile(data, token)
       .then((res) => {
@@ -135,15 +136,12 @@ function App() {
       .catch(console.error);
   };
 
-  const handleCardLike = (data) => {
+  const handleCardLike = (data, isLiked) => {
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
-    //IF NOT LIKED
     !isLiked
-      ? // if so, send a request to add the user's id to the card's likes array
-        //LIKE THE CARD
+      ? //LIKE THE CARD
         likeCard(data, token)
-          // the first argument is the card's id
           .addCardLike(data, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -210,7 +208,7 @@ function App() {
       })
       .catch(() => {
         console.error;
-        setIsLoggedIn(false);
+        setggedIn(false);
       });
   }, []);
 
@@ -268,34 +266,33 @@ function App() {
             />
             {/* Item modal for previewing and deleting an item */}
             <ItemModal
-              activeModal={activeModal}
+              isOpen={activeModal === "preview"}
               card={selectedCard}
               closeActiveModal={closeActiveModal}
               handleDeleteClick={handleDeleteItem}
             />
             <RegisterModal
-              activeModal={activeModal}
+              isOpen={activeModal === "signup"}
               closeActiveModal={closeActiveModal}
               onSignUp={onSignUp}
             />
 
             <LoginModal
-              activeModal={activeModal}
+              isOpen={activeModal === "login"}
               closeActiveModal={closeActiveModal}
               onLogIn={onLogIn}
             />
             <EditProfileModal
-              activeModal={activeModal}
+              isOpen={activeModal === "editprofile"}
               closeActiveModal={closeActiveModal}
               onEditProfile={onEditProfile}
             />
-            {activeModal === "delete-garment" && (
-              <DeleteConfirmModal
-                activeModal={activeModal}
-                handleCloseClick={closeActiveModal}
-                onDelete={handleDeleteItem}
-              />
-            )}
+
+            <DeleteConfirmModal
+              isOpen={activeModal === "delete-garment"}
+              handleCloseClick={closeActiveModal}
+              onDelete={handleDeleteItem}
+            />
           </CurrentTemperatureUnitContext.Provider>
         </div>
       </CurrentUserContext.Provider>

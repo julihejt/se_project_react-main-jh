@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ activeModal, onLogIn, closeActiveModal }) => {
+const LoginModal = ({ isOpen, onLogIn, closeActiveModal }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     console.log(e.target.value);
@@ -24,9 +24,8 @@ const LoginModal = ({ activeModal, onLogIn, closeActiveModal }) => {
     <ModalWithForm
       titleText="Log in"
       buttonText="Log in"
-      activeModal={activeModal}
       onClose={closeActiveModal}
-      isOpen={activeModal === "login"}
+      isOpen={isOpen}
       name={"login"}
       onSubmit={handleSubmit}
     >

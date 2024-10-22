@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../assets/fonts/CabinetGrotesk-Medium.otf") format("opentype");
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -9,6 +14,12 @@
   font-weight: 700;
   background-color: #f3f3f3;
   justify-content: space-between;
+}
+
+.header_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .header__logo {
@@ -25,8 +36,8 @@
 }
 
 .header__toggle-switch-container {
-  display: flex;
   margin-left: 350px;
+  display: flex;
   align-items: center;
 }
 
@@ -49,4 +60,23 @@
 .header__link {
   text-decoration: none;
   color: #000;
+}
+
+.header_signup-button {
+  border: none;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24.8px;
+  font-weight: 700;
+  background: transparent;
+  cursor: pointer;
+}
+.header_login-button {
+  border: none;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24.8px;
+  font-weight: 700;
+  background: transparent;
+  cursor: pointer;
 }
