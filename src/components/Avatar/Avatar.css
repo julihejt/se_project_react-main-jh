@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Cabinet Grotesk";
-  src: url("../../assets/fonts/CabinetGrotesk-Medium.otf") format("opentype");
+  src: url("../../assets/fonts/fonts/CabinetGrotesk-Medium.ttf")
+    format("opentype");
 }
 .avatar__image,
 .avatar__letter {

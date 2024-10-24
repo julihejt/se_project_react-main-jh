@@ -49,6 +49,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+
   // Function to handle card click events
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -103,27 +104,34 @@ function App() {
 
   const onSignUp = (data) => {
     signUp(data)
-      .then(
-        (res = {
-          onLogIn(res) {
-            closeActiveModal();
-          },
-        })
-      )
-      .catch(console.error);
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          closeActiveModal();
+        } else {
+          console.error("Sign-up failed. No token received.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during sign-up:", error);
+      });
   };
 
   const onLogIn = (data) => {
     signIn(data)
-      .then(
-        (res = {
-          setIsLoggedIn() {
-            localStorage.setItem("jwt", res.token);
-            closeActiveModal();
-          },
-        })
-      )
-      .catch(console.error);
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          setIsLoggedIn(true);
+          closeActiveModal();
+        } else {
+          console.error("Login failed. No token received.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+      });
   };
 
   const onEditProfile = (data) => {
@@ -139,28 +147,23 @@ function App() {
   const handleCardLike = (data, isLiked) => {
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
-    !isLiked
-      ? //LIKE THE CARD
-        likeCard(data, token)
-          .addCardLike(data, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err))
-      : // if not, send a request to remove the user's id from the card's likes array
-        //IF IS LIKED,
-        unlikeCard(data)
-          // the first argument is the card's id
-          //REMOVE LIKED
-          .removeCardLike({ cardId, token })
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === id ? updatedCard : item))
-            );
-          })
-          .catch((err) => console.log(err));
+    if (!isLiked) {
+      likeCard(data, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === data._id ? updatedCard : item))
+          );
+        })
+        .catch(console.error);
+    } else {
+      unlikeCard(data, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === data._id ? updatedCard : item))
+          );
+        })
+        .catch(console.error);
+    }
   };
 
   // Function to handle toggle switch change
@@ -199,16 +202,12 @@ function App() {
     //checks token
     getCurrentUser(token)
       .then((user) => {
-        //if tokemn is valid,
-        //receieve the user data and set logged in to true
-
         setIsLoggedIn(true);
-        // store the user info in a state variable
         setCurrentUser(user);
       })
-      .catch(() => {
-        console.error;
-        setggedIn(false);
+      .catch((error) => {
+        console.error("Error fetching current user:", error);
+        setIsLoggedIn(false);
       });
   }, []);
 
@@ -268,7 +267,7 @@ function App() {
             <ItemModal
               isOpen={activeModal === "preview"}
               card={selectedCard}
-              closeActiveModal={closeActiveModal}
+              onClose={closeActiveModal}
               handleDeleteClick={handleDeleteItem}
             />
             <RegisterModal

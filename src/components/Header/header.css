@@ -5,18 +5,19 @@
 
 .header {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding: 32px 0 28px;
-  font-family: "Cabinet Grotesk Bold";
-  font-size: 20px;
-  line-height: 1.2;
-  font-weight: 700;
+  width: 100%;
   background-color: #f3f3f3;
-  justify-content: space-between;
 }
 
-.header_wrapper {
+.header__wrapper-left {
+  display: flex;
+  align-items: center;
+}
+
+.header__wrapper-right {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -24,26 +25,28 @@
 
 .header__logo {
   margin-right: 24px;
-}
-
-.header__add-btn {
-  margin-left: auto;
-  margin-right: 20px;
-  font-weight: 700;
-  border: none;
-  background: none;
-  color: #000;
-}
-
-.header__toggle-switch-container {
-  margin-left: 350px;
-  display: flex;
-  align-items: center;
+  width: 89px;
+  height: 40px;
 }
 
 .header__date-and-location {
   margin: 0;
-  color: #000;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header__add-btn {
+  margin: 0 20px 0 auto;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .header__user-container {
@@ -52,25 +55,21 @@
   gap: 12px;
 }
 
-.header__user-name {
+.header__username {
   margin: 0;
-  color: #000;
-}
-
-.header__link {
-  text-decoration: none;
-  color: #000;
-}
-
-.header_signup-button {
-  border: none;
   font-family: "Cabinet Grotesk";
   font-size: 20px;
   line-height: 24.8px;
   font-weight: 700;
-  background: transparent;
-  cursor: pointer;
 }
+
+.avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.header_signup-button,
 .header_login-button {
   border: none;
   font-family: "Cabinet Grotesk";
@@ -79,4 +78,9 @@
   font-weight: 700;
   background: transparent;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }

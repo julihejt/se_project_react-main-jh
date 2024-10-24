@@ -3,18 +3,18 @@ import logo from "../../assets/Logo.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-import { CurrentTemperatureUnitContext } from "../../context/CurrentTemperatureUnitContext";
 import { useContext } from "react";
 import CurrentUserContext from "../../context/CurrentUserContext";
 
 function Header({
-  handleCardClick,
+  handleAddClick,
   weatherData,
   handleLoginModal,
   handleRegisterModal,
   isLoggedIn,
 }) {
-  const { name, avatar } = useContext(CurrentUserContext);
+  const { name } = useContext(CurrentUserContext); // using 'name' from context
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -22,51 +22,53 @@ function Header({
 
   return (
     <header className="header">
-      <div className="header_wrapper">
+      <div className="header__wrapper-left">
         <Link to="/">
-          <img src={logo} alt="wtwr logo" className="header__logo" />
+          <img className="header__logo" src={logo} alt="page logo" />
         </Link>
         <p className="header__date-and-location">
           {currentDate}, {weatherData.city}
         </p>
       </div>
-      <div className="header__toggle-switch-container">
+      <div className="header__wrapper-right">
         <ToggleSwitch />
+
+        {isLoggedIn ? (
+          <>
+            <button
+              onClick={handleAddClick}
+              type="button"
+              className="header__add-btn"
+            >
+              + Add clothes
+            </button>
+
+            <Link to="/profile">
+              <div className="header__user-container">
+                <p className="header__username">{name}</p>
+                <Avatar sizeClass="avatar-small" />
+              </div>
+            </Link>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={handleRegisterModal}
+              type="button"
+              className="header_signup-button"
+            >
+              Sign up
+            </button>
+            <button
+              onClick={handleLoginModal}
+              type="button"
+              className="header_login-button"
+            >
+              Log In
+            </button>
+          </>
+        )}
       </div>
-      <button
-        onClick={handleCardClick}
-        type="button"
-        className="header__add-btn"
-      >
-        + Add clothes
-      </button>
-
-      {isLoggedIn ? (
-        <Link to="/profile">
-          <div className="header__user-container">
-            <p className="header__username">{name}</p>
-
-            <img src={avatar} alt={name} className="header__avatar" />
-          </div>
-        </Link>
-      ) : (
-        <>
-          <button
-            onClick={handleCardClick}
-            type="button"
-            className="header_signup-button"
-          >
-            Sign up
-          </button>
-          <button
-            onClick={handleCardClick}
-            type="button"
-            className="header_login-button"
-          >
-            Log In
-          </button>
-        </>
-      )}
     </header>
   );
 }

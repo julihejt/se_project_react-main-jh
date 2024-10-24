@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react"; // Added useEffect
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import CurrentUserContext from "../../context/CurrentUserContext";
 
 const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
   const [name, setName] = useState("");
@@ -16,6 +17,16 @@ const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
 
     onEditProfile({ name, avatarUrl });
   };
+
+  const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name);
+      setAvatarUrl(currentUser.avatar);
+    }
+  }, [currentUser]);
+
   return (
     <ModalWithForm
       titleText="Change profile data"

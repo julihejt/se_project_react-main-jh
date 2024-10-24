@@ -22,6 +22,7 @@
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
+  border-radius: 16px;
 }
 
 .modal__content_addgarment {
@@ -122,17 +123,24 @@
 }
 
 .modal__submit {
-  font-family: "Cabinet Grotesk", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  color: rgba(255, 255, 255, 1);
-  background-color: #000;
   border: none;
+  background: #0000004d;
   border-radius: 4px;
-  margin-top: 32px;
-  width: 124px;
-  height: 36px;
   cursor: pointer;
+  /* width: 124px; */
+  height: 36px;
+  padding: 8px 16px;
+
+  border: none;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  font-family: "Cabinet Grotesk";
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  margin-top: 40px;
 }
 
 .modal__delete-button {

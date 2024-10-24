@@ -1,4 +1,6 @@
+import React from "react";
 import "../DeleteConfirmModal/DeleteConfirmModal.css";
+
 function DeleteConfirmModal({ isOpen, handleCloseClick, onDelete }) {
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>

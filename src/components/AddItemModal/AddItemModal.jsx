@@ -10,20 +10,17 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem(values, () => {
-      setValues({ name: "", imageUrl: "", weather: "" });
-    });
+    onAddItem(values, () => setValues({ name: "", imageUrl: "", weather: "" }));
   };
 
   return (
     <ModalWithForm
-      title="new garment"
+      title="New Garment"
       buttonText="Add garment"
-      //activeModal={activeModal}
-      isOpen={isOpen === "add-garment"} // updated to match expected prop name in ModalWithForm
-      closeActiveModal={handleCloseModal} // This prop name should match the expectation in ModalWithForm
+      isOpen={isOpen === "add-garment"} // Ensures correct prop passed to ModalWithForm
+      closeActiveModal={handleCloseModal} // Ensures correct prop passed to ModalWithForm
       name={"add garment"}
-      onSubmit={handleSubmit} // Pass handleSubmit to be used in the form submission
+      onSubmit={handleSubmit} // Handles form submission
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -42,7 +39,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
-          placeholder="Image Url"
+          placeholder="Image URL"
           value={values.imageUrl}
           name="imageUrl"
           onChange={handleChange}
@@ -55,7 +52,6 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
       <fieldset className="modal__radio-buttons">
         <legend className="modal__legend">Select the weather type:</legend>
         <label htmlFor="hot" className="modal__label_type_radio">
-          {" "}
           <input
             name="weather"
             id="hot"
@@ -91,7 +87,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           />
           Cold
         </label>
-      </fieldset>{" "}
+      </fieldset>
     </ModalWithForm>
   );
 };

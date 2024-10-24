@@ -1,28 +1,66 @@
-import "../ItemModal/ItemModal.css";
+import "./ItemModal.css";
+import CurrentUserContext from "../../context/CurrentUserContext";
+import { useContext } from "react";
+function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = card.owner === currentUser._id;
 
-// Define the ItemModal component
-function ItemModal({ isOpen, card, closeActiveModal, handleDeleteClick }) {
+  const modalDeleteButtonClassName = `modal__delete-button ${
+    isOwn ? "modal__delete-button_visible" : "modal__delete-button_hidden"
+  }`;
+
   return (
-    // Conditional class for modal based on activeModal prop
-    <div className={`modal ${isOpen && "modal_opened"}`}>
+    <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
-        {/* Close button with onClick event to trigger onClose function */}
-        <button onClick={closeActiveModal} className="modal__close"></button>
-        {/* Display the card image */}
+        <button
+          onClick={onClose}
+          className="modal__close modal__close_type_white"
+          type="button"
+        ></button>
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
-          {/* Display the card name */}
-          <h2 className="modal__caption">{card.name}</h2>
-          {/* Display the weather associated with the card */}
-          <p className="modal__weather">Weather: {card.weather}</p>
-          <button onClick={handleDeleteClick} className="modal__delete">
-            Delete item
-          </button>
+          <div className="modal__left-section">
+            <h2 className="modal__caption">{card.name}</h2>
+            <p className="modal__weather">Weather: {card.weather}</p>
+          </div>
+          <div className="modal__right-section">
+            <div
+              className={`modal ${activeModal === "preview" && "modal_opened"}`}
+            >
+              <div className="modal__content modal__content_type_image">
+                <button
+                  onClick={onClose}
+                  className="modal__close modal__close_type_white"
+                  type="button"
+                ></button>
+                <img
+                  src={card.imageUrl}
+                  alt={card.name}
+                  className="modal__image"
+                />
+                <div className="modal__footer">
+                  <div className="modal__left-section">
+                    <h2 className="modal__caption">{card.name}</h2>
+                    <p className="modal__weather">Weather: {card.weather}</p>
+                  </div>
+                  <div className="modal__right-section">
+                    {isOwn && (
+                      <button
+                        className={modalDeleteButtonClassName}
+                        onClick={(e) => onDeleteItem(card._id)}
+                        type="button"
+                      >
+                        Delete item
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-// Export the ItemModal component
 export default ItemModal;

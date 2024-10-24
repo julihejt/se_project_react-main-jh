@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
+function RegisterModal({
+  isOpen,
+  closeActiveModal, // This will be passed as the onClose prop to ModalWithForm
+  onSignUp,
+  handleLoginModal = () => {}, // Default to an empty function if not provided
+}) {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const [password, setPassword] = useState("");
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
@@ -27,7 +29,6 @@ function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onSignUp({ email, password, name, avatarUrl });
   };
 
@@ -36,8 +37,7 @@ function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
       titleText="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
-      onClose={closeActiveModal}
-      name={"signup"}
+      onClose={closeActiveModal} // Pass closeActiveModal as the onClose handler
       onSubmit={handleSubmit}
     >
       <label htmlFor="email" className="modal__input_type_name">
@@ -51,10 +51,11 @@ function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
           onChange={handleEmailChange}
         />
       </label>
+
       <label htmlFor="password" className="modal__input_type_password">
         Password{" "}
         <input
-          type="text"
+          type="password" // Changed type to password for security
           className="modal__input"
           id="password"
           placeholder="Password"
@@ -62,6 +63,7 @@ function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
           onChange={handlePasswordChange}
         />
       </label>
+
       <label htmlFor="name" className="modal__input_type_name">
         Name{" "}
         <input
@@ -73,6 +75,7 @@ function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
           onChange={handleNameChange}
         />
       </label>
+
       <label htmlFor="avatarUrl" className="modal__input_type_avatarurl">
         Avatar URL{" "}
         <input
@@ -84,7 +87,22 @@ function RegisterModal({ isOpen, closeActiveModal, onSignUp }) {
           onChange={handleAvatarUrlChange}
         />
       </label>
+
+      <div className="modal__buttons-wrapper">
+        <button type="submit" className="modal__submit">
+          Sign Up
+        </button>
+
+        <button
+          type="button"
+          className="modal__or-login-btn"
+          onClick={handleLoginModal} // Trigger the login modal
+        >
+          or Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 }
+
 export default RegisterModal;
