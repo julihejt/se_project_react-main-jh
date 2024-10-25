@@ -30,9 +30,6 @@ function ModalWithForm({
           {" "}
           {/* Using the passed onSubmit function */}
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>
