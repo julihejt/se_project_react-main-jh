@@ -1,6 +1,6 @@
 import "./Profile.css";
-import SideBar from "../Profile/SideBar/SideBar";
-import ClothesSection from "../Profile/ClothesSection/ClothesSection";
+import SideBar from "../SideBar/SideBar";
+import ClothesSection from "../ClothesSection/ClothesSection";
 
 // Defining the Profile component which takes props: onCardClick, clothingItems, handleAddClick, and weatherData
 function Profile({

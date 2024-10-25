@@ -6,11 +6,11 @@ const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
   const [name, setName] = useState("");
   const handleNameChange = (e) => {
     console.log(e.target.value);
-    setName(e.target.value);
+    setName(e.target.value || "");
   };
   const [avatarUrl, setAvatarUrl] = useState("");
   const handleAvatarUrlChange = (e) => {
-    setAvatarUrl(e.target.value);
+    setAvatarUrl(e.target.value || "");
   };
   const handleSubmit = (e) => {
     e.preventDefault();

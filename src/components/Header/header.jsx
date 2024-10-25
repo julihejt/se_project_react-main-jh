@@ -4,6 +4,7 @@ import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import Avatar from "../Avatar/Avatar";
 import CurrentUserContext from "../../context/CurrentUserContext";
 
 function Header({

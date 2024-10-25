@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../../assets/fonts/CabinetGrotesk-Medium.otf") format("opentype");
+}
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 56px;
+  width: 229px;
+}
+.sidebar__username {
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24.8px;
+  font-weight: 700;
+}
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+}
+.sidebar__change-profile {
+  border: none;
+  outline: none; /* Removes the focus outline */
+  background: transparent; /* Removes the default background color */
+  color: inherit; /* Optional: inherit text color from parent */
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24.8px;
+}
+.sidebar__logout {
+  border: none;
+  outline: none; /* Removes the focus outline */
+  background: transparent; /* Removes the default background color */
+  color: inherit; /* Optional: inherit text color from parent */
+  cursor: pointer;
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24.8px;
+}
+.sidebar__user-info {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}

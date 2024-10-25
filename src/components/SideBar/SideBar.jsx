@@ -1,13 +1,31 @@
+import React from "react";
 import "./SideBar.css";
-import avatar from "../assets/avatar.svg";
+import { useContext } from "react";
+import Avatar from "../Avatar/Avatar";
+import CurrentUserContext from "../../context/CurrentUserContext";
+const SideBar = ({ handleEditProfileModal, handleLogOutClick }) => {
+  const { name } = useContext(CurrentUserContext);
 
-function SideBar() {
   return (
     <div className="sidebar">
-      <img className="sidebar__avatar" src={avatar} alt="Default Name" />
-      <p className="sidebar__username">Terrance Tegegne</p>
+      <div className="sidebar__user-info">
+        <Avatar sizeClass="avatar-large" />
+        <p className="sidebar__username">{name}</p>
+      </div>
+      <div className="avatar__buttons">
+        <button
+          onClick={handleEditProfileModal}
+          type="button"
+          className="sidebar__change-profile"
+        >
+          Change profile data
+        </button>
+        <button onClick={handleLogOutClick} className="sidebar__logout">
+          Log out
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default SideBar;
