@@ -2,7 +2,7 @@ import "../ItemCard/ItemCard.css";
 import likeButton from "../../assets/likebtn.svg";
 import isLikedButton from "../../assets/islikedbtn.svg";
 import { useContext, useEffect, useState } from "react";
-import CurrentUserContext from "../../context/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 function ItemCard({ item, onCardClick, onCardLike, isLoggedIn = false }) {
   const currentUser = useContext(CurrentUserContext);
   const [isLiked, setIsLiked] = useState(false);

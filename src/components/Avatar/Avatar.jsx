@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./Avatar.css";
-import CurrentUserContext from "../../context/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Avatar({ sizeClass }) {
   const { name, avatar } = useContext(CurrentUserContext);
