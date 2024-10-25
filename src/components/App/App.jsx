@@ -104,18 +104,11 @@ function App() {
 
   const onSignUp = (data) => {
     signUp(data)
-      .then((res) => {
-        if (res.token) {
-          localStorage.setItem("jwt", res.token);
-          setIsLoggedIn(true);
-          closeActiveModal();
-        } else {
-          console.error("Sign-up failed. No token received.");
-        }
+      .then(() => {
+        onLogIn(data);
+        closeActiveModal();
       })
-      .catch((error) => {
-        console.error("Error during sign-up:", error);
-      });
+      .catch(console.error);
   };
 
   const onLogIn = (data) => {

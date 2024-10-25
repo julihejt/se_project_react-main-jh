@@ -4,7 +4,6 @@ import "./ModalWithForm.css";
 function ModalWithForm({
   onClose,
   children,
-  buttonText,
   title,
   isOpen,
   onSubmit, // expecting to receive the handleSubmit function
