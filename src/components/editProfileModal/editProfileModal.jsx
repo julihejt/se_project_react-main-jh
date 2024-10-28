@@ -22,8 +22,8 @@ const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
 
   useEffect(() => {
     if (currentUser) {
-      setName(currentUser.name);
-      setAvatarUrl(currentUser.avatar);
+      setName(currentUser.name || "");
+      setAvatarUrl(currentUser.avatar || "");
     }
   }, [currentUser]);
 
@@ -41,7 +41,7 @@ const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
         <input
           type="text"
           className="modal__input"
-          id="name"
+          //id="name"
           placeholder="Name"
           value={name}
           onChange={handleNameChange}

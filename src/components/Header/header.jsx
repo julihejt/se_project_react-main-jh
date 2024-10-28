@@ -15,7 +15,7 @@ function Header({
   isLoggedIn,
 }) {
   const { name } = useContext(CurrentUserContext); // using 'name' from context
-
+  //console.log(JSON.stringify(currentUser));
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -37,7 +37,9 @@ function Header({
         {isLoggedIn ? (
           <>
             <button
-              onClick={handleAddClick}
+              onClick={() => {
+                handleAddClick();
+              }}
               type="button"
               className="header__add-btn"
             >

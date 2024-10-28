@@ -1,4 +1,4 @@
-import { baseUrl } from "./Api";
+import { baseUrl, processResponse } from "./Api";
 
 //sign up
 function signUp({ name, avatarUrl: avatar, email, password }) {
@@ -13,7 +13,7 @@ function signUp({ name, avatarUrl: avatar, email, password }) {
       email,
       password,
     }),
-  });
+  }).then(processResponse);
 }
 
 //sign in
@@ -28,7 +28,7 @@ function signIn({ email, password }) {
       email,
       password,
     }),
-  });
+  }).then(processResponse);
 }
 
 //edit profile
@@ -44,7 +44,7 @@ function editProfile({ name, avatarUrl: avatar }, token) {
       name,
       avatar,
     }),
-  });
+  }).then(processResponse);
 }
 
 function getCurrentUser(token) {
@@ -54,7 +54,7 @@ function getCurrentUser(token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
+  }).then(processResponse);
 }
 
 export { signUp, signIn, getCurrentUser, editProfile };

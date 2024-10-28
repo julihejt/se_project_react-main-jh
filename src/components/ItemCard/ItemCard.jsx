@@ -22,12 +22,6 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn = false }) {
     setIsLiked(!isLiked);
     onCardLike(item, isLiked);
   };
-
-  //if ia auhorized user, show like button,
-  //if not authorized, hide like button
-  // const itemLikeButtonClassName = ` card__like-btn ${
-  //   isLiked ? "card__like-btn_visible" : " card__like-btn_hidden"
-  // }`;
   return (
     <li className="card">
       <div className="card__overlay">

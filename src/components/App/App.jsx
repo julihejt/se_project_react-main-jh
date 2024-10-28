@@ -117,6 +117,7 @@ function App() {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
+          setCurrentUser(res.user);
           closeActiveModal();
         } else {
           console.error("Login failed. No token received.");
@@ -214,7 +215,7 @@ function App() {
             value={{ currentTemperatureUnit, handleToggleSwitchChange }}
           >
             <Header
-              handleCardClick={handleAddClick}
+              handleAddClick={handleAddClick}
               handleRegisterModal={handleRegisterModal}
               handleLoginModal={handleLoginModal}
               isLoggedIn={isLoggedIn}

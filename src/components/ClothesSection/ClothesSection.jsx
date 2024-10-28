@@ -29,7 +29,7 @@ function ClothesSection({
           + Add New
         </button>
       </div>
-      <ul className={clothesSectionItems}>
+      <ul className={"clothes-section_items"}>
         {clothingItems
           .filter((item) => {
             return item.owner === currentUser._id;
@@ -40,6 +40,7 @@ function ClothesSection({
               item={item}
               onCardClick={onCardClick}
               onCardLike={onCardLike}
+              isLoggedIn={isLoggedIn}
             />
           ))}
       </ul>

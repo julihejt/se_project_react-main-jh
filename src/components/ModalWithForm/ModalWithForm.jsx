@@ -2,13 +2,12 @@ import React from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
-  onClose,
+  closeActiveModal,
   children,
   title,
   isOpen,
   onSubmit, // expecting to receive the handleSubmit function
 }) {
-  console.log(title);
   return (
     // Main container for the modal, conditionally adding the 'modal_opened' class
     <div className={`modal ${isOpen && "modal_opened"}`}>
@@ -17,7 +16,11 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
 
         {/* Button to close the modal, triggering closeActiveModal function */}
-        <button onClick={onClose} className="modal__close" />
+        <button
+          onClick={closeActiveModal}
+          className="modal__close modal__close_type_grey"
+          type="button"
+        />
 
         {/* Form inside the modal */}
         <form
