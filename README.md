@@ -20,6 +20,12 @@ This project was made using:
 - React
 - Vite
 
+### Running the Server
+
+- `npm install` — To download Node modules
+- `npm run start` — Launch the server in production mode.
+- `npm run dev` — Run the server in development mode with hot-reloading.
+
 **GitHub**
 
 - [Link to the project on GitHub](https://github.com/julihejt/se_project_react-main-jh)
