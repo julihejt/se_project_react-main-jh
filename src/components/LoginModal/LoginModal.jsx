@@ -6,7 +6,7 @@ const LoginModal = ({
   isOpen,
   onLogIn,
   closeActiveModal,
-  handleRegisterModal,
+  openRegisterModal,
 }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -64,7 +64,7 @@ const LoginModal = ({
         <button
           type="button"
           className="modal__or-signup-btn"
-          onClick={handleRegisterModal}
+          onClick={openRegisterModal}
         >
           or Sign Up
         </button>

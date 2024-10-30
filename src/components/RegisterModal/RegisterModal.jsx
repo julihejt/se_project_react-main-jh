@@ -5,7 +5,7 @@ function RegisterModal({
   isOpen,
   closeActiveModal, // This will be passed as the onClose prop to ModalWithForm
   onSignUp,
-  handleLoginModal = () => {}, // Default to an empty function if not provided
+  openLoginModal = () => {}, // Default to an empty function if not provided
 }) {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -96,7 +96,7 @@ function RegisterModal({
         <button
           type="button"
           className="modal__or-login-btn"
-          onClick={handleLoginModal} // Trigger the login modal
+          onClick={openLoginModal} // Trigger the login modal
         >
           or Log In
         </button>
