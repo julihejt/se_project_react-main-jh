@@ -11,16 +11,17 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddItem(values, () => setValues({ name: "", imageUrl: "", weather: "" }));
+    handleCloseModal(); // Close modal after form submission
   };
 
   return (
     <ModalWithForm
-      title="New Garment"
-      buttonText="Add garment"
-      isOpen={isOpen} // Ensures correct prop passed to ModalWithForm
-      closeActiveModal={handleCloseModal} // Ensures correct prop passed to ModalWithForm
-      name={"add garment"}
-      onSubmit={handleSubmit} // Handles form submission
+      titleText="New Garment" // Updated title prop name to titleText
+      buttonText="Add garment" // Button text for the submit button
+      isOpen={isOpen} // Passes isOpen prop to control modal visibility
+      onClose={handleCloseModal} // Close modal function when modal is dismissed
+      name="add-garment" // Name prop for identification
+      onSubmit={handleSubmit} // Form submission handler
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
@@ -34,6 +35,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           className="modal__input"
           minLength="1"
           maxLength="30"
+          required
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -47,6 +49,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           type="url"
           className="modal__input"
           minLength="1"
+          required
         />
       </label>
       <fieldset className="modal__radio-buttons">
@@ -88,6 +91,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
           Cold
         </label>
       </fieldset>
+      <button type="submit" className="modal__submit">
+        Add garment
+      </button>
     </ModalWithForm>
   );
 };

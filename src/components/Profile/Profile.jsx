@@ -10,13 +10,16 @@ function Profile({
   weatherData,
   selectedCard,
   onCardLike = { onCardLike },
+  handleLogOutClick,
 }) {
   return (
     // Main container for the profile component
     <div className="profile">
       {/* Section containing the sidebar, passing weatherData as a prop to SideBar component */}
       <section className="profile__sidebar">
-        <SideBar weatherData={weatherData} />
+        <SideBar 
+        weatherData={weatherData} 
+        handleLogOutClick={handleLogOutClick}/>
       </section>
 
       {/* Section containing the clothing items, passing props to ClothesSection component */}

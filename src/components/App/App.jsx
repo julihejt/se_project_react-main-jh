@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "../App/App.css";
 import { coordinates, APIKey } from "../../utils/constants";
 import Header from "../Header/header";
@@ -166,6 +166,12 @@ function App() {
     else setCurrentTemperatureUnit("C");
   };
 
+  const handleLogOutClick = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    closeActiveModal();
+  };
+
   // useEffect to fetch weather data on component mount
   useEffect(() => {
     getWeather(coordinates, APIKey)
@@ -245,8 +251,19 @@ function App() {
                       onCardLike={handleCardLike}
                       clothingItems={clothingItems}
                       selectedCard={selectedCard}
+                      handleLogOutClick={handleLogOutClick}
                     />
                   </ProtectedRoute>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  isLoggedIn ? (
+                    <Navigate to="/profile" replace />
+                  ) : (
+                    <Navigate to="/" replace />
+                  )
                 }
               />
             </Routes>

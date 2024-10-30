@@ -2,7 +2,7 @@ import React from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
-  closeActiveModal,
+  onClose,
   children,
   title,
   isOpen,
@@ -17,7 +17,7 @@ function ModalWithForm({
 
         {/* Button to close the modal, triggering closeActiveModal function */}
         <button
-          onClick={closeActiveModal}
+          onClick={onClose}
           className="modal__close modal__close_type_grey"
           type="button"
         />
