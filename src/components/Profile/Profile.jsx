@@ -9,6 +9,7 @@ function Profile({
   handleAddClick,
   weatherData,
   selectedCard,
+  handleEditProfileModal,
   onCardLike = { onCardLike },
   handleLogOutClick,
 }) {
@@ -17,9 +18,11 @@ function Profile({
     <div className="profile">
       {/* Section containing the sidebar, passing weatherData as a prop to SideBar component */}
       <section className="profile__sidebar">
-        <SideBar 
-        weatherData={weatherData} 
-        handleLogOutClick={handleLogOutClick}/>
+        <SideBar
+          //weatherData={weatherData}
+          handleEditProfileModal={handleEditProfileModal}
+          handleLogOutClick={handleLogOutClick}
+        />
       </section>
 
       {/* Section containing the clothing items, passing props to ClothesSection component */}

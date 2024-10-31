@@ -58,6 +58,9 @@ const EditProfileModal = ({ isOpen, closeActiveModal, onEditProfile }) => {
           onChange={handleAvatarUrlChange}
         />
       </label>
+      <button type="submit" className="modal__submit">
+        Save changes
+      </button>
     </ModalWithForm>
   );
 };
