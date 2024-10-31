@@ -87,8 +87,8 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItem = () => {
-    console.log("Attempting to delete item with ID:", selectedCard._id);
+  const handleDeleteItem = (_id) => {
+    const token = localStorage.getItem("jwt");
     deleteItem(selectedCard._id)
       .then(() => {
         console.log("Item deleted successfully");

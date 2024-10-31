@@ -1,7 +1,7 @@
 import React from "react";
 import "../DeleteConfirmModal/DeleteConfirmModal.css";
 
-function DeleteConfirmModal({ isOpen, handleCloseClick, onDelete }) {
+function DeleteConfirmModal({ isOpen, handleCloseClick, onDeleteItem }) {
   return (
     <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="modal__content modal_content_type_delete">
@@ -15,7 +15,7 @@ function DeleteConfirmModal({ isOpen, handleCloseClick, onDelete }) {
           irreversible.
         </p>
         <button
-          onClick={onDelete}
+          onClick={onDeleteItem}
           className="modal__delete-confirm"
           type="submit"
         >

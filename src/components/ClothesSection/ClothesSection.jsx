@@ -9,6 +9,7 @@ function ClothesSection({
   clothingItems,
   selectedCard = { selectedCard },
   onCardLike = { onCardLike },
+  isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwned = selectedCard.owner === currentUser._id;
