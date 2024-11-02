@@ -87,7 +87,7 @@ function App() {
       .catch(console.error);
   };
 
-  const handleDeleteItem = (_id) => {
+  const onDeleteItem = (_id) => {
     const token = localStorage.getItem("jwt");
     deleteItem(selectedCard._id)
       .then(() => {
@@ -279,7 +279,7 @@ function App() {
               isOpen={activeModal === "preview"}
               card={selectedCard}
               onClose={closeActiveModal}
-              handleDeleteClick={handleDeleteItem}
+              onDeleteClick={onDeleteItem}
             />
             <RegisterModal
               isOpen={activeModal === "signup"}
@@ -303,7 +303,7 @@ function App() {
             <DeleteConfirmModal
               isOpen={activeModal === "delete-garment"}
               handleCloseClick={closeActiveModal}
-              onDelete={handleDeleteItem}
+              onDelete={onDeleteItem}
             />
           </CurrentTemperatureUnitContext.Provider>
         </div>
