@@ -1,6 +1,7 @@
 const baseUrl = "http://localhost:3001"; // Fixed baseUrl without trailing slash
 const headers = {
   "Content-Type": "application/json",
+  authorization: `Bearer ${localStorage.getItem("jwt")}`,
 };
 
 const processResponse = (response) => {
@@ -15,12 +16,10 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(processResponse);
 }
 
-function addItem({ name, weather, imageUrl }) {
+function onAddItem({ name, weather, imageUrl }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json", // Add Content-Type header
-    },
+    headers: headers,
     body: JSON.stringify({ name, weather, imageUrl }),
   }).then(processResponse);
 }
@@ -37,4 +36,4 @@ const deleteItem = (id) => {
     });
 };
 
-export { getItems, addItem, deleteItem, processResponse, baseUrl };
+export { getItems, onAddItem, deleteItem, processResponse, baseUrl };

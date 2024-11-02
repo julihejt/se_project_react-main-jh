@@ -10,7 +10,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import Footer from "../Footer/Footer";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, deleteItem, addItem } from "../../utils/Api";
+import { getItems, deleteItem, onAddItem } from "../../utils/Api";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
 
 import { signUp, signIn, getCurrentUser, editProfile } from "../../utils/auth";
@@ -77,7 +77,7 @@ function App() {
   };
 
   // Function to handle adding a new item
-  const onAddItem = (values, onDone) => {
+  const addItem = (values, onDone) => {
     return addItem({ ...values, token: localStorage.getItem("jwt") })
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
