@@ -10,8 +10,11 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItem(values, () => setValues({ name: "", imageUrl: "", weather: "" }));
-    handleCloseModal(); // Close modal after form submission
+    onAddItem(values)
+      .then(() => {
+        setValues({ name: "", imageUrl: "", weather: "" });
+      })
+      .catch(console.error);
   };
 
   return (

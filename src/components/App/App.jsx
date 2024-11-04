@@ -80,15 +80,16 @@ function App() {
     setActiveModal("editprofile");
   };
 
+  console.log(JSON.stringify(clothingItems));
+
   // Function to handle adding a new item
-  const addItem = (values, onDone) => {
-    return addItem({ ...values, token: localStorage.getItem("jwt") })
-      .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+  const handleAddItemModalSubmit = (values) => {
+    return onAddItem({ ...values, token: localStorage.getItem("jwt") }).then(
+      (item) => {
+        setClothingItems((prev) => [item.data, ...prev]);
         closeActiveModal();
-        onDone();
-      })
-      .catch(console.error);
+      }
+    );
   };
 
   const onDeleteItem = (_id) => {
@@ -274,7 +275,7 @@ function App() {
             <Footer />
             {/* Conditional rendering for AddItemModal */}
             <AddItemModal
-              onAddItem={onAddItem}
+              onAddItem={handleAddItemModalSubmit}
               handleCloseModal={closeActiveModal}
               isOpen={activeModal === "add-garment"}
             />
