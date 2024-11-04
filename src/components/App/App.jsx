@@ -66,6 +66,10 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleDeleteItem = () => {
+    setActiveModal("deleteItem");
+  };
+
   const handleRegisterModal = () => {
     setActiveModal("signup");
   };
@@ -88,8 +92,8 @@ function App() {
   };
 
   const onDeleteItem = (_id) => {
-    const token = localStorage.getItem("jwt");
-    deleteItem(selectedCard._id)
+    const headers = localStorage.getItem("jwt");
+    deleteItem(selectedCard._id, headers)
       .then(() => {
         console.log("Item deleted successfully");
         setClothingItems((prevItems) => {
@@ -279,7 +283,7 @@ function App() {
               isOpen={activeModal === "preview"}
               card={selectedCard}
               onClose={closeActiveModal}
-              onDeleteClick={onDeleteItem}
+              onDeleteItem={onDeleteItem}
             />
             <RegisterModal
               isOpen={activeModal === "signup"}

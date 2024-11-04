@@ -4,11 +4,22 @@ import { useContext } from "react";
 
 function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = card.owner === currentUser._id;
+  const isOwn = card?.owner === currentUser?._id;
 
+  // Logging to help with debugging
+  console.log("Current User:", currentUser);
+  console.log("Card Data:", card);
+  console.log("onDeleteItem function:", onDeleteItem);
+
+  // CSS class for delete button
   const modalDeleteButtonClassName = `modal__delete-button ${
     isOwn ? "modal__delete-button_visible" : "modal__delete-button_hidden"
   }`;
+
+  // Ensure card data is loaded before rendering
+  if (!card) {
+    return null; // If card data is not available, do not render the modal
+  }
 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
@@ -28,7 +39,16 @@ function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
             {isOwn && (
               <button
                 className={modalDeleteButtonClassName}
-                onClick={() => onDeleteItem(card._id)}
+                onClick={() => {
+                  if (onDeleteItem) {
+                    console.log("Deleting item with ID:", card._id);
+                    onDeleteItem(card._id); // Ensure the function is called with card._id
+                  } else {
+                    console.error(
+                      "onDeleteItem is not provided or not a function"
+                    );
+                  }
+                }}
                 type="button"
               >
                 Delete item
