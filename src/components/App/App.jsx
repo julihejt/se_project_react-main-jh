@@ -153,7 +153,7 @@ function App() {
     const token = localStorage.getItem("jwt");
     // Check if this card is not currently liked
     if (!isLiked) {
-      likeCard(data, token)
+      likeCard(data)
         .then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === data._id ? updatedCard : item))

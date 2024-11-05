@@ -22,11 +22,14 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn = false }) {
     setIsLiked(!isLiked);
     onCardLike(item, isLiked);
   };
+
+  //console.log(isLoggedIn);
+
   return (
     <li className="card">
       <div className="card__overlay">
         <h2 className="card__name">{item.name}</h2>
-        {isLoggedIn && (
+        {true && (
           <img
             className={"card__like-btn"}
             type="button"
