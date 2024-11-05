@@ -36,4 +36,25 @@ const deleteItem = (id) => {
     });
 };
 
-export { getItems, onAddItem, deleteItem, processResponse, baseUrl };
+function likeCard(itemId) {
+  return request(`${baseUrl}/items/${itemId}/likes/`, {
+    method: "PUT",
+    headers: headers,
+  });
+}
+
+function unlikeCard(itemId) {
+  return request(`${baseUrl}/items/${itemId}/likes/`, {
+    method: "DELETE",
+    headers: headers,
+  });
+}
+export {
+  getItems,
+  onAddItem,
+  deleteItem,
+  processResponse,
+  baseUrl,
+  likeCard,
+  unlikeCard,
+};
