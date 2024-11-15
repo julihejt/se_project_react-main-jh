@@ -37,17 +37,17 @@ const deleteItem = (id) => {
 };
 
 function likeCard(itemId) {
-  return request(`${baseUrl}/items/${itemId}/likes/`, {
+  return fetch(`${baseUrl}/items/${itemId}/likes/`, {
     method: "PUT",
     headers: headers,
-  });
+  }).then(processResponse);
 }
 
 function unlikeCard(itemId) {
-  return request(`${baseUrl}/items/${itemId}/likes/`, {
+  return fetch(`${baseUrl}/items/${itemId}/likes/`, {
     method: "DELETE",
     headers: headers,
-  });
+  }).then(processResponse);
 }
 export {
   getItems,

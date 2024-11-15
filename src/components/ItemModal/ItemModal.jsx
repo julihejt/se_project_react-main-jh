@@ -2,7 +2,7 @@ import "./ItemModal.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
+function ItemModal({ isOpen, onClose, card, onDeleteItem, handleDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card?.owner === currentUser?._id;
 
@@ -39,16 +39,7 @@ function ItemModal({ isOpen, onClose, card, onDeleteItem }) {
             {isOwn && (
               <button
                 className={modalDeleteButtonClassName}
-                onClick={() => {
-                  if (onDeleteItem) {
-                    console.log("Deleting item with ID:", card._id);
-                    onDeleteItem(card._id); // Ensure the function is called with card._id
-                  } else {
-                    console.error(
-                      "onDeleteItem is not provided or not a function"
-                    );
-                  }
-                }}
+                onClick={handleDeleteItem}
                 type="button"
               >
                 Delete item

@@ -4,7 +4,7 @@ import "./ModalWithForm.css";
 function ModalWithForm({
   onClose,
   children,
-  title,
+  titleText,
   isOpen,
   onSubmit, // expecting to receive the handleSubmit function
 }) {
@@ -13,7 +13,7 @@ function ModalWithForm({
     <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="modal__content">
         {/* Title of the modal */}
-        <h2 className="modal__title">{title}</h2>
+        <h2 className="modal__title">{titleText}</h2>
 
         {/* Button to close the modal, triggering closeActiveModal function */}
         <button

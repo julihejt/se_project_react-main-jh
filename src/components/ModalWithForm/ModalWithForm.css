@@ -25,14 +25,19 @@
   border-radius: 16px;
 }
 
+.modal__content_type_image {
+  padding: 0;
+  max-width: 498px;
+}
+
 .modal__content_addgarment {
   padding: 28px 28px 36px 28px;
 }
 
 .modal__title {
-  margin: 0;
   font-size: 16px;
-  padding-bottom: 20px;
+  line-height: 20px;
+  font-weight: 700;
 }
 
 .modal__close {
@@ -124,7 +129,6 @@
 
 .modal__submit {
   border: none;
-  background: #0000004d;
   border-radius: 4px;
   cursor: pointer;
   /* width: 124px; */
@@ -141,6 +145,8 @@
   line-height: 20px;
   font-weight: 700;
   margin-top: 40px;
+  .modal__submit {
+  }
 }
 
 .modal__delete-button {
@@ -164,4 +170,43 @@
 }
 .modal__submit:hover {
   background-color: #00000099;
+}
+
+.delete__modal-confirm {
+  border: none;
+  background-color: transparent;
+  margin-top: 40px;
+  color: #ff4d00;
+  font-size: 20px;
+}
+
+.delete__modal-cancel {
+  border: none;
+  background-color: transparent;
+  margin-top: 24px;
+  font-size: 20px;
+}
+
+.delete__modal-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete__modal-warning {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+}
+
+.modal__container_type_confirmation {
+  width: 670px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+  box-sizing: border-box;
+  border-radius: 16px;
 }

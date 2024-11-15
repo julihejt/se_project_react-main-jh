@@ -2,15 +2,7 @@
   font-family: "Cabinet Grotesk";
   src: url("../../assets/fonts/CabinetGrotesk-Medium.otf") format("opentype");
 }
-.modal__content {
-  width: 498px;
 
-  border-radius: 16px;
-  border: none;
-}
-.modal__content_type_image {
-  padding: 0;
-}
 .modal__close {
   position: absolute;
   right: 28px;
@@ -33,15 +25,15 @@
   border-top-right-radius: 16px;
 }
 .modal__footer {
-  font-family: "Cabinet Grotesk";
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 700;
-  margin-left: 32px;
-  margin-bottom: 32px;
-  margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  font-family: "Cabinet Grotesk";
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  /* margin-top: auto; */
+  /* padding-top: 85px; */
+  padding: 20px 32px 32px;
 }
 .modal__caption {
   font-family: "Cabinet Grotesk";

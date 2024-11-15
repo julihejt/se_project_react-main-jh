@@ -29,7 +29,8 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn = false }) {
     <li className="card">
       <div className="card__overlay">
         <h2 className="card__name">{item.name}</h2>
-        {true && (
+
+        {currentUser._id && (
           <img
             className={"card__like-btn"}
             type="button"

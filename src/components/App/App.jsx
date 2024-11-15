@@ -17,7 +17,7 @@ import {
   likeCard,
   unlikeCard,
 } from "../../utils/Api";
-import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal";
+import DeleteConfirmationModal from "../DeleteConfirmModal/DeleteConfirmationModal";
 
 import { signUp, signIn, getCurrentUser, editProfile } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
@@ -114,12 +114,11 @@ function App() {
   };
 
   const onSignUp = (data) => {
-    signUp(data)
-      .then(() => {
-        onLogIn(data);
-        closeActiveModal();
-      })
-      .catch(console.error);
+    signUp(data).then(() => {
+      onLogIn(data);
+      closeActiveModal();
+    });
+    //.catch(console.error);
   };
 
   const onLogIn = (data) => {
@@ -151,20 +150,30 @@ function App() {
 
   const handleCardLike = (data, isLiked) => {
     const token = localStorage.getItem("jwt");
-    // Check if this card is not currently liked
+
     if (!isLiked) {
-      likeCard(data)
+      // pass the card id to the likeCard function
+      likeCard(data._id)
         .then((updatedCard) => {
+          console.log("Card liked successfully", updatedCard);
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === data._id ? updatedCard : item))
+            // to get access to the updated card data, use updatedCard.data
+            cards.map((item) =>
+              item._id === data._id ? updatedCard.data : item
+            )
           );
         })
         .catch(console.error);
     } else {
-      unlikeCard(data, token)
+      // pass the card id to the unlikeCard function
+      unlikeCard(data._id)
         .then((updatedCard) => {
+          console.log("Card liked successfully", updatedCard);
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === data._id ? updatedCard : item))
+            // to get access to the updated card data, use updatedCard.data
+            cards.map((item) =>
+              item._id === data._id ? updatedCard.data : item
+            )
           );
         })
         .catch(console.error);
@@ -291,6 +300,7 @@ function App() {
               card={selectedCard}
               onClose={closeActiveModal}
               onDeleteItem={onDeleteItem}
+              handleDeleteItem={handleDeleteItem}
             />
             <RegisterModal
               isOpen={activeModal === "signup"}
@@ -311,8 +321,8 @@ function App() {
               onEditProfile={onEditProfile}
             />
 
-            <DeleteConfirmModal
-              isOpen={activeModal === "delete-garment"}
+            <DeleteConfirmationModal
+              isOpen={activeModal === "deleteItem"}
               handleCloseClick={closeActiveModal}
               onDelete={onDeleteItem}
             />
