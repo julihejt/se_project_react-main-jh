@@ -4,7 +4,7 @@ import "./DeleteConfirmationModal.css";
 function DeleteConfirmationModal({
   activeModal,
   closeActiveModal,
-  handleCardDelete,
+  onDelete,
   isOpen,
   onClose,
 }) {
@@ -13,8 +13,8 @@ function DeleteConfirmationModal({
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      await handleCardDelete();
-      closeActiveModal();
+      await onDelete();
+      //closeActiveModal();
     } catch (err) {
       console.error("Error deleting item:", err);
     } finally {

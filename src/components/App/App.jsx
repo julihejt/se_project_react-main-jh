@@ -323,8 +323,9 @@ function App() {
 
             <DeleteConfirmationModal
               isOpen={activeModal === "deleteItem"}
-              handleCloseClick={closeActiveModal}
+              closeActiveModal={closeActiveModal}
               onDelete={onDeleteItem}
+              onClose={closeActiveModal}
             />
           </CurrentTemperatureUnitContext.Provider>
         </div>
