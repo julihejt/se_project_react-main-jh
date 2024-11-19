@@ -30,7 +30,7 @@ function ClothesSection({
           + Add New
         </button>
       </div>
-      <ul className={"clothes-section_items"}>
+      <ul className={"clothes-section__items"}>
         {clothingItems
           .filter((item) => {
             return item.owner === currentUser._id;

@@ -86,7 +86,7 @@ function App() {
     setActiveModal("editprofile");
   };
 
-  console.log(JSON.stringify(clothingItems));
+  //console.log(JSON.stringify(clothingItems));
 
   // Function to handle adding a new item
   const handleAddItemModalSubmit = (values) => {

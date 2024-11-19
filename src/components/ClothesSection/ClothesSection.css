@@ -18,7 +18,15 @@
   font-size: 20px;
   line-height: 1.24;
   color: #000;
-  margin: 0 0 16px;
+}
+
+.clothes-section__items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 19px;
+  width: 1000px;
 }
 
 .clothes-section__add-card-button {
@@ -33,15 +41,6 @@
 
 .clothes-section__add-card-button:hover {
   opacity: 0.3;
-}
-
-.clothes-section__items {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  gap: 10px;
-  width: 1000px;
 }
 
 @media screen and (max-width: 750px) {
