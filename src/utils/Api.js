@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001"; // Fixed baseUrl without trailing slash
+const baseUrl = "http://localhost:3001";
 const headers = {
   "Content-Type": "application/json",
   authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -16,18 +16,17 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(processResponse);
 }
 
-function onAddItem({ name, weather, imageUrl }) {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ name, weather, imageUrl }),
-  }).then(processResponse);
+function getHeaders() {
+  return {
+    "Content-Type": "application/json",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`, // Always fetch latest token
+  };
 }
 
 const deleteItem = (id) => {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
-    headers: headers,
+    headers: getHeaders(),
   })
     .then(processResponse) // Use processResponse to handle the response
     .catch((error) => {
@@ -36,19 +35,28 @@ const deleteItem = (id) => {
     });
 };
 
+function onAddItem({ name, weather, imageUrl }) {
+  return fetch(`${baseUrl}/items`, {
+    method: "POST",
+    headers: getHeaders(), // Use dynamic headers
+    body: JSON.stringify({ name, weather, imageUrl }),
+  }).then(processResponse);
+}
+
 function likeCard(itemId) {
   return fetch(`${baseUrl}/items/${itemId}/likes/`, {
     method: "PUT",
-    headers: headers,
+    headers: getHeaders(), // Use dynamic headers
   }).then(processResponse);
 }
 
 function unlikeCard(itemId) {
   return fetch(`${baseUrl}/items/${itemId}/likes/`, {
     method: "DELETE",
-    headers: headers,
+    headers: getHeaders(), // Use dynamic headers
   }).then(processResponse);
 }
+
 export {
   getItems,
   onAddItem,
