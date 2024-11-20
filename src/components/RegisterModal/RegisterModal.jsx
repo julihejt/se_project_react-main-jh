@@ -52,12 +52,11 @@ function RegisterModal({
         />
       </label>
 
-      <label htmlFor="password" className="modal__input_type_password">
+      <label className="modal__input_type_password">
         Password{" "}
         <input
-          type="password" // Changed type to password for security
+          type="password"
           className="modal__input"
-          //id="password"
           placeholder="Password"
           value={password}
           onChange={handlePasswordChange}

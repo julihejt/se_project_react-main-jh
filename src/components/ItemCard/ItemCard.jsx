@@ -19,7 +19,6 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn = false }) {
     onCardClick(item);
   };
   const handleLike = () => {
-    setIsLiked(!isLiked);
     onCardLike(item, isLiked);
   };
 

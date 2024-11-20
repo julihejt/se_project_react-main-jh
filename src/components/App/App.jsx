@@ -18,7 +18,6 @@ import {
   unlikeCard,
 } from "../../utils/Api";
 import DeleteConfirmationModal from "../DeleteConfirmModal/DeleteConfirmationModal";
-
 import { signUp, signIn, getCurrentUser, editProfile } from "../../utils/auth";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
@@ -54,7 +53,6 @@ function App() {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLiked, setIsLiked] = useState(false);
 
   // Function to handle card click events
   const handleCardClick = (card) => {
@@ -79,16 +77,15 @@ function App() {
   const handleRegisterModal = () => {
     setActiveModal("signup");
   };
+
   const handleLoginModal = () => {
     setActiveModal("login");
   };
+
   const handleEditProfileModal = () => {
     setActiveModal("editprofile");
   };
 
-  //console.log(JSON.stringify(clothingItems));
-
-  // Function to handle adding a new item
   const handleAddItemModalSubmit = (values) => {
     return onAddItem({ ...values, token: localStorage.getItem("jwt") }).then(
       (item) => {
@@ -102,23 +99,21 @@ function App() {
     const headers = localStorage.getItem("jwt");
     deleteItem(selectedCard._id, headers)
       .then(() => {
-        console.log("Item deleted successfully");
-        setClothingItems((prevItems) => {
-          return prevItems.filter((item) => item._id !== selectedCard._id);
-        });
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item._id !== selectedCard._id)
+        );
         closeActiveModal();
       })
-      .catch((error) => {
-        console.error("Failed to delete item:", error);
-      });
+      .catch(console.error);
   };
 
   const onSignUp = (data) => {
-    signUp(data).then(() => {
-      onLogIn(data);
-      closeActiveModal();
-    });
-    //.catch(console.error);
+    signUp(data)
+      .then(() => {
+        onLogIn(data);
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const onLogIn = (data) => {
@@ -129,13 +124,9 @@ function App() {
           setIsLoggedIn(true);
           setCurrentUser(res.user);
           closeActiveModal();
-        } else {
-          console.error("Login failed. No token received.");
         }
       })
-      .catch((error) => {
-        console.error("Error during login:", error);
-      });
+      .catch(console.error);
   };
 
   const onEditProfile = (data) => {
@@ -152,12 +143,9 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     if (!isLiked) {
-      // pass the card id to the likeCard function
       likeCard(data._id)
         .then((updatedCard) => {
-          console.log("Card liked successfully", updatedCard);
           setClothingItems((cards) =>
-            // to get access to the updated card data, use updatedCard.data
             cards.map((item) =>
               item._id === data._id ? updatedCard.data : item
             )
@@ -165,12 +153,9 @@ function App() {
         })
         .catch(console.error);
     } else {
-      // pass the card id to the unlikeCard function
       unlikeCard(data._id)
         .then((updatedCard) => {
-          console.log("Card liked successfully", updatedCard);
           setClothingItems((cards) =>
-            // to get access to the updated card data, use updatedCard.data
             cards.map((item) =>
               item._id === data._id ? updatedCard.data : item
             )
@@ -180,7 +165,6 @@ function App() {
     }
   };
 
-  // Function to handle toggle switch change
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     else setCurrentTemperatureUnit("C");
@@ -192,18 +176,15 @@ function App() {
     closeActiveModal();
   };
 
-  // useEffect to fetch weather data on component mount
   useEffect(() => {
     getWeather(coordinates, APIKey)
       .then((data) => {
-        // Filter and set the weather data
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
       .catch(console.error);
   }, []);
 
-  // useEffect to fetch clothing items from the server
   useEffect(() => {
     getItems()
       .then((items) => {
@@ -213,30 +194,44 @@ function App() {
   }, []);
 
   useEffect(() => {
-    //gets token from local storage
     const token = localStorage.getItem("jwt");
 
     if (!token) {
       return;
     }
-    //checks token
+
     getCurrentUser(token)
       .then((user) => {
         setIsLoggedIn(true);
         setCurrentUser(user);
       })
       .catch((error) => {
-        console.error("Error fetching current user:", error);
+        console.error(error);
         setIsLoggedIn(false);
       });
   }, []);
 
-  // Returning the JSX for the App component
+  // Escape key listener
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
+
   return (
     <div className="app">
       <CurrentUserContext.Provider value={currentUser}>
         <div className="app__content">
-          {/* Providing the current temperature unit and toggle function via context */}
           <CurrentTemperatureUnitContext.Provider
             value={{ currentTemperatureUnit, handleToggleSwitchChange }}
           >
@@ -259,7 +254,6 @@ function App() {
                   />
                 }
               />
-
               <Route
                 path="/profile"
                 element={
@@ -288,13 +282,11 @@ function App() {
               />
             </Routes>
             <Footer />
-            {/* Conditional rendering for AddItemModal */}
             <AddItemModal
               onAddItem={handleAddItemModalSubmit}
               handleCloseModal={closeActiveModal}
               isOpen={activeModal === "add-garment"}
             />
-            {/* Item modal for previewing and deleting an item */}
             <ItemModal
               isOpen={activeModal === "preview"}
               card={selectedCard}
@@ -306,9 +298,8 @@ function App() {
               isOpen={activeModal === "signup"}
               closeActiveModal={closeActiveModal}
               onSignUp={onSignUp}
-              openLoginModal={handleLoginModal} // Pass this function
+              openLoginModal={handleLoginModal}
             />
-
             <LoginModal
               isOpen={activeModal === "login"}
               closeActiveModal={closeActiveModal}
@@ -320,12 +311,10 @@ function App() {
               closeActiveModal={closeActiveModal}
               onEditProfile={onEditProfile}
             />
-
             <DeleteConfirmationModal
               isOpen={activeModal === "deleteItem"}
               closeActiveModal={closeActiveModal}
               onDelete={onDeleteItem}
-              onClose={closeActiveModal}
             />
           </CurrentTemperatureUnitContext.Provider>
         </div>
